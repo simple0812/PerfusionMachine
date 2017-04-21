@@ -57,16 +57,16 @@ namespace PerfusionMachine
                 {
                     if (data.Direction == DirectionEnum.In)
                     {
-                        txtStatus.Text = data.FlowRate <=0 ? "进液后静置" :"正在进液";
+                        txtStatus.Text = data.FlowRate <=0 ? "standing after in" :"pump in";
                     }
                     else
                     {
-                        txtStatus.Text = data.FlowRate <= 0 ? "出液后静置" : "正在出液";
+                        txtStatus.Text = data.FlowRate <= 0 ? "standing after out" : "pump out";
                     }
                 }
                 else if(data.DirectiveType == DirectiveTypeEnum.TryPause)
                 {
-                    txtStatus.Text = "暂停";
+                    txtStatus.Text = "pause";
                 }
             });
         }
