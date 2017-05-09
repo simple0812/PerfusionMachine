@@ -25,6 +25,10 @@
             <TextBox Header="顶部停留时间(s)" x:Name="txtTopInterval" Text="10"></TextBox>
             <TextBox Header="底部停留时间(s)" x:Name="txtBottomInterval" Text="10"></TextBox>
             <TextBlock x:Name="txtStatus"></TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="正转" Width="140" Height="70" x:Name="btnForward" Click="BtnForward_OnClick"></Button>
+                <Button Content="反转" Width="140" Height="70" Margin="1" x:Name="btnReversal" Click="BtnReversal_OnClick"></Button>
+            </StackPanel>
         </StackPanel>
 
         <CommandBar Grid.Row="2">
