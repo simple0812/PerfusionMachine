@@ -143,13 +143,17 @@ namespace PerfusionMachine
 
         private async void BtnForward_OnClick(object sender, RoutedEventArgs e)
         {
+            var btn = sender as Button;
+            if(btn?.Tag == null) return;
+
+            var tag = btn.Tag.ToString();
             cancellationTokenSource.Cancel();
             await Logic.Instance.Close();
             btnStart.IsEnabled = true;
             _lastOperate.Clear();
             txtStatus.Text = "pump in";
 
-            int volume = int.TryParse(txtVolume.Text, out volume) ? volume : 10;
+            int volume = tag == "1" ? 100 *1000 : int.TryParse(txtVolume.Text, out volume) ? volume : 10;
             int flowrate = int.TryParse(txtFlowrate.Text, out flowrate) ? flowrate : 10;
 
             await Logic.Instance.pump1.SetParams(flowrate, volume > 0 ? volume : 0, DirectionEnum.In).StartAsync();
@@ -157,13 +161,17 @@ namespace PerfusionMachine
 
         private async void BtnReversal_OnClick(object sender, RoutedEventArgs e)
         {
+            var btn = sender as Button;
+            if (btn?.Tag == null) return;
+
+            var tag = btn.Tag.ToString();
             cancellationTokenSource.Cancel();
             await Logic.Instance.Close();
             btnStart.IsEnabled = true;
             _lastOperate.Clear();
             txtStatus.Text = "pump out";
 
-            int volume = int.TryParse(txtVolume.Text, out volume) ? volume : 10;
+            int volume = tag == "1" ? 100 * 1000 : int.TryParse(txtVolume.Text, out volume) ? volume : 10;
             int flowrate = int.TryParse(txtFlowrate.Text, out flowrate) ? flowrate : 10;
             await Logic.Instance.pump1.SetParams(flowrate, volume > 0 ? volume : 0, DirectionEnum.Out).StartAsync();
         }
